@@ -1,0 +1,94 @@
+﻿@model Surf.Models.Surfboard
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Rental</h1>
+@if(TempData["SuccesMessage"] != null) {
+    <div class="alert alert-success">
+        @TempData["SuccesMessage"]
+    </div>
+}
+
+<div class="row">
+    <div class="col-sm-6">
+        <h4>Surfboard</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Length)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Length)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Width)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Width)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Thickness)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Thickness)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Volume)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Volume)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Price)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Price)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Type)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Type)
+            </dd>
+            <dt class="col-sm-4">
+                @Html.DisplayNameFor(model => model.Equipment)
+            </dt>
+            <dd class="col-sm-8">
+                @Html.DisplayFor(model => model.Equipment)
+            </dd>
+         
+        </dl>
+    </div>
+
+<div class="col-sm-6">
+    <dl>
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+        <dd>
+            <img src="@Url.Content(Model.Image)" width="600" height="600" />
+        </dd>
+    </dl>
+</div>
+    </div>
+
+    <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <input type="hidden" asp-for="RowVersion" />
+    <div class="form-group">
+        <input type="submit" value="Rent" class="btn btn-primary" />
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

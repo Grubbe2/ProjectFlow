@@ -1,0 +1,110 @@
+﻿@using MyBlazorShop.Libraries.Services.Product
+@using MyBlazorShop.Libraries.Services.Product.Models
+@using MyBlazorShop.Libraries.Services.Storage
+@page "/"
+@inject IProductService productservice
+@inject IConfiguration configuration
+@inject IStorageService storageservice
+@inject NavigationManager navigationManager
+@inject HttpClient httpClient
+<PageTitle>Product listings</PageTitle>
+<HeadContent>
+    <meta name="description" content="Product listing page" />
+</HeadContent>
+<Hero Title="John's Surfshop" 
+    Description="🏄‍♂️ Ride the waves with John's Surfshop! – your go-to destination for premium surfboards and essentials. Elevate your surf experience with quality craftsmanship and a vibrant selection for every skill level. 
+🌊" Image="Surfboards.jpg" 
+BackgroundImage="shop-hero-yellow"></Hero>
+
+@if (Products?.Any() ?? false)
+{
+    <main class="margin-horizontal:auto max-width:container padding-horizontal:32">
+        <div id="vue-shop" class="margin-bottom:32 quenched">
+            <div class="display:flex flex-grow:1 flex-wrap:wrap margin-bottom:-32 margin-horizontal:-16">
+                <div class="display:flex flex-direction:column flex-grow:0 flex-shrink:0 margin-bottom:32 padding-horizontal:16 width:100 @@mq-768--width:100">
+                    <ul class="display:flex flex-grow:1 flex-wrap:wrap margin-bottom:-32 margin-horizontal:-16">
+                        @foreach (var product in Products)
+                        {
+                            <ProductListingItem Product="product"></ProductListingItem>
+                        }
+                    </ul>
+                     <Pagination ActivePageNumber="@currentPageNumber" 
+                            Alignment="Alignment.Center"
+                            TotalPages="TotalPageCount"
+                            PageChanged="OnPageChangedAsync" /> 
+                </div>
+            </div>
+        </div>
+    </main>
+}
+
+@code {
+    private IList<ProductModel>? Products { get; set; } 
+    
+    [Parameter, SupplyParameterFromQuery]
+    public int? page { get; set; }
+
+    private int TotalPageCount { get; set; }
+
+
+    int currentPageNumber = 1;
+
+    
+}
+@functions {
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            Console.WriteLine("Attempting to fetch products...");
+
+
+
+            var response = await httpClient.GetFromJsonAsync<IList<ProductModel>>("v1.0/RentalsApi");
+
+            foreach(ProductModel p in response)
+            {
+                p.Sku = p.ID.ToString();
+                storageservice.AddProduct(p);
+            }
+
+            if (response != null)
+            {
+                Products = productservice.GetAll(4, currentPageNumber);
+                TotalPageCount = productservice.GetTotalPageCount(4);
+                Console.WriteLine($"Successfully fetched {Products.Count} products.");
+            }
+            else
+            {
+                Console.WriteLine("Response is null.");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"An error occurred: {ex.Message}");
+        }
+
+        base.OnParametersSet();
+    }
+    // protected override async Task OnInitializedAsync()
+    // {
+    //     //var productListingConfig = configuration.GetSection("ProductListing");
+    //     //var pageSize = configuration.GetValue<int>("PageSize");
+
+    //     Products = await httpClient.GetFromJsonAsync<IList<ProductModel>>("v1.0/RentalsApi");
+    //     // Products = productservice.GetAll(4, currentPageNumber);
+    //     // TotalPageCount = productservice.GetTotalPageCount(4);
+
+    //     base.OnParametersSet();
+    // }
+
+     private async Task OnPageChangedAsync(int newPageNumber)
+     {
+         Products = productservice.GetAll(4, newPageNumber);
+         await Task.Run(() => { currentPageNumber = newPageNumber; });
+     }
+    
+
+
+}
