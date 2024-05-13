@@ -1,0 +1,220 @@
+﻿<Page x:Class="CharlotteSchou_Booking.Views.BookingView.BookingList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:CharlotteSchou_Booking.Views.BookingView"
+      mc:Ignorable="d"
+      d:DesignHeight="800"
+      d:DesignWidth="1200"
+      WindowHeight="800"
+      WindowWidth="1200"
+      Title="BookingList">
+
+    <Grid Background="LightPink">
+
+        <Label Content="Booking"
+               HorizontalAlignment="Center"
+               FontSize="40"
+               FontWeight="Bold"/>
+
+        <StackPanel Height="550"
+                    Width="600"
+                    Margin="400,150,0,0"
+                    VerticalAlignment="Center">
+
+            <Border BorderThickness="0.5,0.5,0.5,0"
+                    BorderBrush="Black">
+
+                <Label Content="Ledige Artister"
+                   FontSize="20"
+                   FontWeight="Bold"
+                   Width="auto"
+                   Background="White"
+                   HorizontalContentAlignment="Center"/>
+            </Border>
+
+            <Border BorderThickness="0.5"
+                    BorderBrush="Black">
+                
+                <ListBox HorizontalContentAlignment="Stretch"
+                         Height="400"
+                         Width="600"
+                         x:Name="Listboxbooking"
+                         ItemsSource="{Binding ArtistsVM}"
+                         SelectedItem="{Binding SelectedArtistVM}"
+                         SelectionChanged="ViewOKBookingBtnChanged">
+
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+
+                                <Grid HorizontalAlignment="Stretch">
+                                    <TextBlock Text="{Binding Name}"
+                                               HorizontalAlignment="Center"
+                                               Margin="10"
+                                               FontSize="16"/>
+                                </Grid>
+                                <Separator>
+                                    <Separator.Style>
+                                        <Style TargetType="Separator">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ArtistsVM}">
+                                                    <Setter Property="Visibility"
+                                                            Value="Collapsed" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Separator.Style>
+                                </Separator>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Border>
+            <StackPanel Orientation="Horizontal"
+                        Margin="0,35,0,0">
+
+                <Button x:Name="OKBookingBtn"
+                    Content="Bekræft"
+                    Height="75"
+                    Width="200"
+                    FontSize="20"
+                    Background="White"
+                    Click="OKBooking_Click"
+                        IsEnabled="False">
+                    <Button.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius"
+                                Value="10" />
+                        </Style>
+                    </Button.Resources>
+                </Button>
+
+                <Button x:Name="CancelBtn"
+                    Content="Tilbage"
+                    Height="75"
+                    Width="200"
+                    FontSize="20"
+                        Margin="200,0,0,0"
+                    Background="White"
+                    Click="CancelBtn_Click">
+
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius"
+                                Value="10" />
+                    </Style>
+                </Button.Resources>
+            </Button>
+        
+            </StackPanel>
+        </StackPanel>
+
+
+        <StackPanel Width="200"
+                    Height="425"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Margin="150,50,0,0">
+
+            <Label Height="40"
+                   Width="200"
+                   Content="Begivenhedstype"
+                   HorizontalContentAlignment="Center"
+                   FontSize="20"
+                   FontWeight="Bold"/>
+            <ComboBox Width="200"
+                      Height="60"
+                      x:Name="EventTypeComboBox"
+                      SelectedItem="{Binding SelectedJobfunctionVM, UpdateSourceTrigger=PropertyChanged}"
+                      FontSize="20"
+                      HorizontalContentAlignment="Left"
+                      Padding="15"
+                      ItemsSource="{Binding JobfunctionsVM}"
+                      SelectionChanged="ViewOKBookingBtnChanged">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Name}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <Label Height="40"
+                   Width="200"
+                   Content="Egenskaber"
+                   HorizontalContentAlignment="Center"
+                   FontSize="20"
+                   FontWeight="Bold"/>
+            <ComboBox Width="200"
+                      Height="60"
+                      x:Name="AttributeComboBox"
+                      SelectedItem="{Binding SelectedAttributeVM}"
+                      FontSize="20"
+                      SelectionChanged="ViewOKBookingBtnChanged"
+                      HorizontalContentAlignment="Left"
+                      Padding="15"
+                      ItemsSource="{Binding AttributesVM}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Characteristics}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+            
+
+            <Label Height="40"
+                   Width="200"
+                   Content="Dato"
+                   HorizontalContentAlignment="Center"
+                   FontSize="20"
+                   FontWeight="Bold"/>
+
+            <StackPanel Orientation="Horizontal">
+                
+                <TextBox x:Name="Datetxt"
+                    Height="60"
+                         Width="200"
+                         Text="{Binding SelectedDate, ElementName=datecld, StringFormat=d, UpdateSourceTrigger=PropertyChanged}"
+                         FontSize="20"
+                         HorizontalContentAlignment="Center"
+                         Padding="15"/>
+                
+                <Button Width="35"
+                        Height="35"
+                        Margin="-45,0,0,0"
+                        Background="transparent"
+                        BorderThickness="0"
+                        x:Name="CalendarBtn"
+                        Click="CalendarBtn_Click">
+                    <Image Source="/Views/Images/calendar24x.png"/>
+                </Button>
+
+                <Popup x:Name="PopUpCalendar">
+                    <Calendar x:Name="datecld"
+                              SelectionMode="SingleRange"
+                              SelectedDate="{Binding SelectedDate, Mode=TwoWay}"
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"/>
+                </Popup>
+            </StackPanel>
+
+            <Label Height="40"
+                   Width="200"
+                   Content="Tidspunkt"
+                   HorizontalContentAlignment="Center"
+                   FontSize="20"
+                   FontWeight="Bold"/>
+            <ComboBox x:Name="TimeCBox"
+                      Height="60"
+                      Width="200"
+                      SelectedItem="{Binding SelectedTime}"
+                      SelectionChanged="ViewOKBookingBtnChanged"
+                      FontSize="25"
+                      HorizontalContentAlignment="Center"/>
+        </StackPanel>
+
+
+    </Grid>
+
+</Page>

@@ -1,0 +1,51 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <RootNamespace>CharlotteSchou_Booking</RootNamespace>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Views\NewFolder1\**" />
+    <EmbeddedResource Remove="Views\NewFolder1\**" />
+    <None Remove="Views\NewFolder1\**" />
+    <Page Remove="Views\NewFolder1\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Views\Images\Background.png" />
+    <None Remove="Views\Images\Background2.jpg" />
+    <None Remove="Views\Images\Background3.jpg" />
+    <None Remove="Views\Images\Background4.jpg" />
+    <None Remove="Views\Images\Background5.jpg" />
+    <None Remove="Views\Images\BackgroundStripper.jpg" />
+    <None Remove="Views\Images\calendar24x.png" />
+    <None Remove="Views\Images\test.png" />
+  </ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
+	</ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Views\Images\Background.png" />
+    <Resource Include="Views\Images\Background2.jpg" />
+    <Resource Include="Views\Images\Background3.jpg" />
+    <Resource Include="Views\Images\Background4.jpg" />
+    <Resource Include="Views\Images\Background5.jpg" />
+    <Resource Include="Views\Images\BackgroundStripper.jpg" />
+    <Resource Include="Views\Images\calendar24x.png" />
+    <Resource Include="Views\Images\test.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

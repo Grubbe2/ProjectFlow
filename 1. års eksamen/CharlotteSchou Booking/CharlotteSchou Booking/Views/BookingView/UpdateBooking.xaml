@@ -1,0 +1,247 @@
+﻿<Page x:Class="CharlotteSchou_Booking.Views.BookingView.UpdateBooking"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:CharlotteSchou_Booking.Views.BookingView"
+      mc:Ignorable="d"
+      d:DesignHeight="800"
+      d:DesignWidth="1200"
+      WindowHeight="800"
+      WindowWidth="1200"
+      Title="CreateBooking">
+
+    <Grid Background="Lightpink">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Title -->
+        <Label Content="Booking"
+               FontWeight="Bold"
+               FontSize="40"
+               Height="75"
+               Width="228"
+               HorizontalContentAlignment="Center"
+               VerticalAlignment="Top"
+               HorizontalAlignment="Center"
+               Grid.Column="2"/>
+
+        <!-- Wrong input message -->
+        <TextBlock x:Name="Confirmlbl"
+                   Height="40"
+                   Width="300"
+                   FontSize="18"
+                   TextAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Grid.Column="1"
+                   Margin="0,500,0,0"/>
+
+        <!-- First column -->
+        <StackPanel Grid.Column="1">
+
+            <Label Content="Adresse"
+                   FontWeight="Bold"
+                   Margin="0,150,0,0"
+                   Height="40"
+                   Width="228"
+                   FontSize="20"
+                   HorizontalContentAlignment="Center" />
+
+            <TextBox x:Name="Addresstxt"
+                     Text="{Binding SelectedCustomerVM.BookingVM.LocationsVM[0].Address}"
+                     Height="60"
+                     Width="250"
+                     Padding="18"
+                     FontSize="16"/>
+
+            <Label Content="By"
+                   FontWeight="Bold"
+                   Margin="0, 50, 0, 0"
+                   Height="40"
+                   Width="228"
+                   FontSize="20"
+                   HorizontalContentAlignment="Center"/>
+
+            <TextBox x:Name="Towntxt"
+                     Text="{Binding SelectedCustomerVM.BookingVM.LocationsVM[0].City}"
+                     Height="60"
+                     Width="250"
+                     Padding="18"
+                     FontSize="16"/>
+
+            <Label Content="Postnummer"
+                   FontWeight="Bold"
+                   Margin="0, 50, 0, 0"
+                   Height="40"
+                   Width="228"
+                   FontSize="20"
+                   HorizontalContentAlignment="Center" />
+
+            <TextBox x:Name="Zipcodetxt"
+                     Text="{Binding SelectedCustomerVM.BookingVM.LocationsVM[0].Zipcode}"
+                     Height="60"
+                     Width="250"
+                     Padding="18"
+                     FontSize="16"/>
+
+            <Button x:Name="UpdateBookingBtn"
+                    Content="Opdater Booking"
+                    FontSize="20"
+                    Width="250"
+                    Height="75"
+                    Background="Pink"
+                    Click="UpdateBookingBtn_Click"
+                    Margin="0,110,0,0"
+                    KeyboardNavigation.IsTabStop="False">
+
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius"
+                                Value="10" />
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </StackPanel>
+
+        <!-- Second column -->
+        <StackPanel Grid.Column="2">
+
+            <Label Content="Navn"
+                   FontWeight="Bold"
+                   Margin="0, 150, 0, 0"
+                   Height="40"
+                   Width="228"
+                   FontSize="20"
+                   HorizontalContentAlignment="Center"/>
+
+            <TextBox x:Name="Nametxt"
+                     Text="{Binding SelectedCustomerVM.Name}"
+                     Height="60"
+                     Width="250"
+                     Padding="18"
+                     FontSize="16"/>
+
+            <Label Content="Telefonnummer"
+                   FontWeight="Bold"
+                   Margin="0, 50, 0, 0"
+                   Height="40"
+                   Width="228"
+                   FontSize="20"
+                   HorizontalContentAlignment="Center"/>
+
+            <TextBox x:Name="PhoneNumbertxt"
+                     Height="60"
+                     Width="250"
+                     Text="{Binding SelectedCustomerVM.PhoneNumber}"
+                     Padding="18"
+                     FontSize="16"/>
+
+            <Label Content="Email"
+                   FontWeight="Bold"
+                   Margin="0,50,0,0"
+                   Height="40"
+                   Width="228"
+                   FontSize="20"
+                   HorizontalContentAlignment="Center" />
+
+            <TextBox x:Name="Emailtxt"
+                     Text="{Binding SelectedCustomerVM.Email}"
+                     Height="60"
+                     Width="250"
+                     Padding="18"
+                     FontSize="16"/>
+
+            <Button x:Name="Cancelbtn"
+                    Content="Annuller"
+                    FontSize="20"
+                    Width="250"
+                    Height="75"
+                    Background="Pink"
+                    Click="Cancel_Click"
+                    Margin="0,110,0,0"
+                    KeyboardNavigation.IsTabStop="False">
+
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius"
+                                Value="10" />
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <!-- Controls for second column go here -->
+        </StackPanel>
+
+        <!-- Third column -->
+        <StackPanel Grid.Column="3">
+
+            <Label Content="Kontaktperson"
+                   FontWeight="Bold"
+                   Margin="0,150,0,0"
+                   Height="40"
+                   Width="228"
+                   FontSize="20"
+                   HorizontalContentAlignment="Center"/>
+
+            <TextBox x:Name="ContactPersontxt"
+                     Text="{Binding SelectedCustomerVM.ContactPerson}"
+                     Height="60"
+                     Width="250"
+                     Margin="0,0,0,0"
+                     Padding="18"
+                     FontSize="16"/>
+
+            <Label Content="Kundetype"
+                   FontWeight="Bold"
+                   Margin="0,50,0,0"
+                   Height="40"
+                   Width="228"
+                   FontSize="20"
+                   HorizontalContentAlignment="Center"/>
+
+            <ComboBox x:Name="DescriptionComboBox"
+                      ItemsSource="{Binding CustomerTypeList}"
+                      Height="60"
+                      Width="250"
+                      Padding="18"
+                      FontSize="16">
+            </ComboBox>
+
+            <Label Content="Pris"
+                   FontWeight="Bold"
+                   Margin="0,50,0,0"
+                   Height="40"
+                   Width="228"
+                   FontSize="20"
+                   HorizontalContentAlignment="Center"/>
+
+            <TextBox x:Name="Pricetxt"
+                     Text="{Binding SelectedCustomerVM.BookingVM.Price}"
+                     Height="60"
+                     Width="250"
+                     Padding="18"
+                     FontSize="16"/>
+
+            <Label Content="Kommentar"
+                   FontWeight="Bold"
+                   Margin="0, 50,0,0"
+                   Height="40"
+                   Width="228"
+                   FontSize="20"
+                   HorizontalContentAlignment="Center"/>
+
+            <TextBox x:Name="Commenttxt"
+                     Text="{Binding SelectedCustomerVM.BookingVM.Comment}"
+                     Height="100"
+                     Width="Auto"
+                     Padding="18"
+                     FontSize="16"/>
+
+        </StackPanel>
+    </Grid>
+</Page>

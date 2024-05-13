@@ -1,0 +1,218 @@
+﻿<Page x:Class="CharlotteSchou_Booking.Views.BookingView.BookingOverview"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:CharlotteSchou_Booking.Views.BookingView"
+      mc:Ignorable="d"
+      d:DesignHeight="800"
+      d:DesignWidth="1200"
+      WindowHeight="800"
+      WindowWidth="1200"
+      Title="BookingOverview">
+
+    <Grid Background="Lightpink"
+          Margin="0,0,10,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <!-- Header Row -->
+            <RowDefinition Height="500" />
+            <!-- ListBox Row -->
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="6*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Headers -->
+        <StackPanel Grid.Row="0"
+                    Grid.Column="1"
+                    Margin="0,50,0,0"
+                    Orientation="Horizontal">
+
+            <TextBlock Text="Booking Id"
+                       Width="Auto"
+                       Margin="5,0,0,0"
+                       FontSize="14"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center" />
+
+            <TextBlock Text="Dato"
+                       Margin="65,0,0,0"
+                       FontSize="14"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center" />
+
+            <TextBlock Text="Tidspunkt"
+                       Margin="65,0,0,0"
+                       FontSize="14"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center" />
+
+            <TextBlock Text="Pris"
+                       Margin="65,0,0,0"
+                       FontSize="14"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center" />
+
+            <TextBlock Text="Artister"
+                       Margin="65,0,0,0"
+                       FontSize="14"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center" />
+
+            <TextBlock Text="Begivenhedstype"
+                       Margin="65,0,0,0"
+                       FontSize="14"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center" />
+
+            <TextBlock Text="Telefonnummer"
+                       Margin="65,0,0,0"
+                       FontSize="14"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center" />
+        </StackPanel>
+
+        <!-- ListBox -->
+        <ListBox Grid.Row="1"
+                 Grid.Column="1"
+                 Margin="0,5,0,0"
+                 Width="Auto"
+                 x:Name="BookingOverviewListBox"
+                 SelectionChanged="ShowBookingBtnChanged"
+                 HorizontalContentAlignment="Stretch"
+                 ItemsSource="{Binding CustomersVM}"
+                 SelectedItem="{Binding SelectedCustomerVM}">
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid HorizontalAlignment="Stretch">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <!-- Column 1 -->
+                            <ColumnDefinition Width="3*" />
+                            <!-- Column 2 -->
+                            <ColumnDefinition Width="4*" />
+                            <!-- Column 3 -->
+                            <ColumnDefinition Width="3*" />
+                            <!-- Column 4 -->
+                            <ColumnDefinition Width="2*" />
+                            <!-- Column 5 -->
+                            <ColumnDefinition Width="5*" />
+                            <!-- Column 6 -->
+                            <ColumnDefinition Width="5*" />
+                            <!-- Column 7 -->
+                            <ColumnDefinition Width="4*" />
+
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="{Binding BookingVM.BookingId}"
+                                   Grid.Column="1"
+                                   HorizontalAlignment="Left"
+                                   FontSize="14" />
+
+                        <TextBlock Text="{Binding BookingVM.Date}"
+                                   Grid.Column="2"
+                                   HorizontalAlignment="Left"
+                                   FontSize="14" />
+
+                        <TextBlock Text="{Binding BookingVM.Time}"
+                                   Grid.Column="3"
+                                   HorizontalAlignment="Left"
+                                   FontSize="14" />
+
+                        <TextBlock Text="{Binding BookingVM.Price}"
+                                   Grid.Column="4"
+                                   HorizontalAlignment="Left"
+                                   FontSize="14" />
+
+                        <TextBlock Text="{Binding BookingVM.ArtistVM.Name}"
+                                   Grid.Column="5"
+                                   HorizontalAlignment="Left"
+                                   FontSize="14" />
+
+                        <TextBlock Text="{Binding BookingVM.EventType}"
+                                   Grid.Column="6"
+                                   HorizontalAlignment="Left"
+                                   FontSize="14" />
+
+                        <TextBlock Text="{Binding PhoneNumber}"
+                                   Grid.Column="7"
+                                   HorizontalAlignment="Left"
+                                   FontSize="14" />
+
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+        <StackPanel Grid.Column="1"
+                    Height="118"
+                    Margin="10,50,0,0"
+                    Grid.Row="2"
+                    VerticalAlignment="Top">
+            <Button x:Name="ShowBookingBtn"
+                    Content="Vis Booking"
+                    FontSize="20"
+                    Width="225"
+                    Height="60"
+                    Background="Pink"
+                    Margin="-600,30,0,0"
+                    Click="ShowBookingBtn_Click"
+                    IsEnabled="False">
+
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius"
+                                Value="10" />
+                    </Style>
+                </Button.Resources>
+            </Button>
+            
+            <Button x:Name="DeleteBookingBtn"
+                    Content="Slet Booking"
+                    Command="{Binding Path=DeleteBookingCommand}"
+                    CommandParameter="{Binding}"
+                    FontSize="20"
+                    Width="225"
+                    Height="60"
+                    Background="Pink"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Margin="0,-64,0,0">
+
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius"
+                                Value="10" />
+                    </Style>
+                </Button.Resources>
+            </Button>
+            <Button x:Name="Backbtn"
+                    Content="Tilbage"
+                    FontSize="20"
+                    Width="225"
+                    Height="60"
+                    Background="Pink"
+                    Click="BackBtn_Click"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Margin="600,-64,0,0">
+
+                <Button.Resources>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="CornerRadius"
+                                Value="10" />
+                    </Style>
+                </Button.Resources>
+            </Button>
+            
+
+        </StackPanel>
+
+    </Grid>
+</Page>

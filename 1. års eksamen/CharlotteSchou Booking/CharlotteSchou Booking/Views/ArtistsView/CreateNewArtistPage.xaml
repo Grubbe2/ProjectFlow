@@ -1,0 +1,200 @@
+﻿<Page x:Class="CharlotteSchou_Booking.View.CreateNewArtistPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:CharlotteSchou_Booking.View"
+      xmlns:viewmodel="clr-namespace:CharlotteSchou_Booking.Viewmodel"
+      mc:Ignorable="d"
+      d:DesignHeight="800"
+      d:DesignWidth="1200"
+      WindowHeight="800"
+      WindowWidth="1200"
+      Title="CreateNewArtistPage"
+      ShowsNavigationUI="false">
+
+    <Grid Background="Lightpink">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="1.5*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Label Height="75"
+               Content="Opret Artist"
+               VerticalAlignment="Top"
+               HorizontalAlignment="Center"
+               FontSize="50"
+               Grid.Column="1"/>
+
+        <StackPanel HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Width="450"
+                    Height="450"
+                    Grid.Column="1">
+            
+            <Label Height="60"
+                   Content="Oplysninger"
+                   HorizontalContentAlignment="Center"
+                   FontSize="40"
+                   Background="HotPink"/>
+
+            <TextBox x:Name="Nametxt"
+                     Height="45"
+                     Text="Navn"
+                     Foreground="Gray"
+                     TextAlignment="Left"
+                     FontSize="25"
+                     Padding="3"
+                     GotFocus="Nametxt_GotFocus"
+                     LostFocus="Nametxt_LostFocus"/>
+
+            <TextBox x:Name="Aliastxt"
+                     Height="45"
+                     Text="Kaldenavn"
+                     Foreground="Gray"
+                     TextAlignment="Left"
+                     FontSize="25"
+                     Padding="3"
+                     GotFocus="Aliastxt_GotFocus"
+                     LostFocus="Aliastxt_LostFocus"/>
+
+            <TextBox x:Name="Adresstxt"
+                     Height="45"
+                     Text="Adresse"
+                     Foreground="Gray"
+                     TextAlignment="Left"
+                     FontSize="25"
+                     Padding="3"
+                     GotFocus="Addresstxt_GotFocus"
+                     LostFocus="Addresstxt_LostFocus"/>
+
+            <TextBox x:Name="Citytxt"
+                     Height="45"
+                     Text="By"
+                     Foreground="Gray"
+                     TextAlignment="Left"
+                     FontSize="25"
+                     Padding="3"
+                     GotFocus="Towntxt_GotFocus"
+                     LostFocus="Towntxt_LostFocus"/>
+
+            <TextBox x:Name="Emailtxt"
+                     Height="45"
+                     Text="Email"
+                     Foreground="Gray"
+                     TextAlignment="Left"
+                     FontSize="25"
+                     Padding="3"
+                     GotFocus="Emailtxt_GotFocus"
+                     LostFocus="Emailtxt_LostFocus"/>
+
+            <TextBox x:Name="Phonetxt"
+                     Height="45"
+                     Text="Telefonnummer"
+                     Foreground="Gray"
+                     TextAlignment="Left"
+                     FontSize="25"
+                     Padding="3"
+                     GotFocus="PhoneNumbertxt_GotFocus"
+                     LostFocus="PhoneNumbertxt_LostFocus"/>
+               
+            <TextBox x:Name="SSNtxt"
+                     Height="45"
+                     Text="CPR-NR"
+                     Foreground="Gray"
+                     TextAlignment="Left"
+                     FontSize="25"
+                     Padding="3"
+                     GotFocus="SSNtxt_GotFocus"
+                     LostFocus="SSNtxt_LostFocus"/>
+
+            <TextBox x:Name="ZipCodetxt"
+                     Height="45"
+                     Text="Postnummer"
+                     Foreground="Gray"
+                     TextAlignment="Left"
+                     FontSize="25"
+                     Padding="3"
+                     GotFocus="ZipCodetxt_GotFocus"
+                     LostFocus="ZipCodetxt_LostFocus"/>
+
+            <Label x:Name="Confirmlbl"
+                   Content=""
+                   Height="50" />
+            
+        </StackPanel>
+
+        <StackPanel Height="250"
+                    Width="200"
+                    HorizontalAlignment="Right"
+                    Grid.Column="0">
+            
+            <Label Content="Status"
+                   FontSize="25"
+                   HorizontalContentAlignment="Center"/>
+
+            <ComboBox x:Name="Statustxt"
+                      ItemsSource="{Binding StatusList}"
+                      Width="200"
+                      Height="60"
+                      FontSize="16"
+                      Padding="18" />
+
+            <Label Content="Aktivitet"
+                   Margin="0,20,0,0"
+                   FontSize="25"
+                   HorizontalContentAlignment="Center"/>
+
+            <ComboBox x:Name="Aactivetxt"
+                      ItemsSource="{Binding ActiveList}"
+                      Width="200"
+                      Height="60"
+                      FontSize="16"
+                      Padding="18"/>
+            
+        </StackPanel>
+
+        <StackPanel VerticalAlignment="Bottom"
+                    Width="Auto"
+                    Height="100"
+                    Orientation="Horizontal"
+                    Grid.Column="1"
+                    HorizontalAlignment="Center">
+
+            <Button x:Name="CreateArtistBtn"
+                    Content="Opret Artist"
+                    FontSize="20"
+                    Background="pink"
+                    Click="CreateArtistBtn_Click"
+                    Height="60"
+                    Width="225">
+
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius"
+                                Value="10" />
+                    </Style>
+                </Button.Resources>
+            </Button>
+
+            <Button x:Name="BackBtn"
+                    Content="Tilbage"
+                    FontSize="20"
+                    Background="Pink"
+                    Click="BackBtn_Click"
+                    Height="60"
+                    Width="225"
+                    Margin="10,0,0,0">
+
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius"
+                                Value="10" />
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Page>

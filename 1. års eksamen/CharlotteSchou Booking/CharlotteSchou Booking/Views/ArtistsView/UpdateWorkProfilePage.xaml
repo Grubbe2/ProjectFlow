@@ -1,0 +1,189 @@
+﻿<Page x:Class="CharlotteSchou_Booking.Views.UpdateWorkProfilePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:local="clr-namespace:CharlotteSchou_Booking.Views"
+      mc:Ignorable="d"
+      d:DesignHeight="800"
+      d:DesignWidth="1200"
+      WindowHeight="800"
+      WindowWidth="1200"
+      Title="UpdateWorkProfilePage"
+      ShowsNavigationUI="false">
+
+    <Grid Background="LightPink">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="17*" />
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="17*" />
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0"
+                    Width="380"
+                    Height="400"
+                    VerticalAlignment="Top">
+
+            <Label Content="Jobfunktion"
+                   FontSize="35"
+                   HorizontalAlignment="Center" />
+
+            <ListBox Height="293"
+                     Width="379"
+                     ItemsSource="{Binding JobfunctionsVM}"
+                     SelectedItem="{Binding SelectedJobfunctionVM}"
+                     Background="pink"
+                     HorizontalContentAlignment="Stretch">
+
+                <ListBox.ItemTemplate>
+
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Name}"
+                                       FontSize="18"
+                                       Margin="10"
+                                       HorizontalAlignment="Left" />
+
+                            <TextBlock Text="{Binding Description}"
+                                       FontSize="18"
+                                       Margin="10"
+                                       HorizontalAlignment="Right" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+
+        <StackPanel Grid.Column="0"
+                    Width="460"
+                    Height="75"
+                    VerticalAlignment="Bottom"
+                    Orientation="Horizontal">
+
+            <Button x:Name="AddJobfunctionBtn"
+                    Content="Tilføj Jobfunktion"
+                    Height="60"
+                    Width="225"
+                    FontSize="20"
+                    Margin="5,0,0,0"
+                    Background="Pink"
+                    Click="AddJobfunction_Click">
+
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius"
+                                Value="10" />
+                    </Style>
+                </Button.Resources>
+            </Button>
+
+            <Button x:Name="DeleteJobfunktionBtn"
+                    Content="Slet Jobfunktion"
+                    Height="60"
+                    Width="225"
+                    FontSize="20"
+                    Margin="5,0,0,0"
+                    Background="Pink">
+
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius"
+                                Value="10" />
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </StackPanel>
+
+        <StackPanel Grid.Column="3"
+                    Width="380"
+                    Height="400"
+                    VerticalAlignment="Top">
+
+            <Label Content="Egenskaber"
+                   FontSize="35"
+                   HorizontalAlignment="Center" />
+
+            <ListBox Height="297"
+                     Width="333"
+                     ItemsSource="{Binding AttributesVM}"
+                     SelectedItem="{Binding SelectedAttributeVM}"
+                     Background="pink"
+                     FontSize="20">
+
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Characteristics}" />
+                            <TextBlock Text=" " />
+                            <TextBlock Text="{Binding Service}" />
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </StackPanel>
+
+        <StackPanel Grid.Column="3"
+                    Width="460"
+                    Height="75"
+                    VerticalAlignment="Bottom"
+                    Orientation="Horizontal">
+
+            <Button x:Name="AddAttributeBtn"
+                    Content="Tilføj Egenskab"
+                    Height="60"
+                    Width="225"
+                    FontSize="20"
+                    Margin="5,0,0,0"
+                    Background="Pink"
+                    Click="AddAttribute_Click">
+
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius"
+                                Value="10" />
+                    </Style>
+                </Button.Resources>
+            </Button>
+
+            <Button x:Name="DeleteAttributeBtn"
+                    Content="Slet Egenskab"
+                    Height="60"
+                    Width="225"
+                    FontSize="20"
+                    Margin="5,0,0,0"
+                    Background="Pink">
+
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius"
+                                Value="10" />
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </StackPanel>
+
+        <StackPanel Grid.Column="1"
+                    HorizontalAlignment="Center"
+                    Height="120"
+                    Margin="0,668,0,0"
+                    VerticalAlignment="Top"
+                    Width="200">
+            <Button x:Name="Donebtn"
+                    Content="Færdig"
+                    Height="40"
+                    Width="180"
+                    FontSize="20"
+                    Margin="0,35,0,0"
+                    Background="Pink"
+                    Click="Donebtn_Click">
+
+                <Button.Resources>
+                    <Style TargetType="Border">
+                        <Setter Property="CornerRadius"
+                                Value="10" />
+                    </Style>
+                </Button.Resources>
+            </Button>
+        </StackPanel>
+    </Grid>
+</Page>
